@@ -1,11 +1,15 @@
 using Plots
 using Dates
+using DelimitedFiles
 
 starttime = Dates.now()
 
 max_tile = 9
-one_dice = true
-one_dice_num = 6
+one_dice = false
+one_dice_num = 6    #when open tiles are equal to or less than this number, one dice is used
+
+reduce_tile_drops = true
+tiles_spaced = true
 
 dice_num = 6
 
@@ -43,9 +47,20 @@ function combo_gen(numbers, target, partial = Int16[], partial_sum = 0)
     if partial_sum >= target
         return nothing
     end
+
     num_len = length(numbers)
-    for i in enumerate(reverse(numbers))
-        remaining = numbers[1:(num_len - i[1])]
+    if reduce_tile_drops
+        lst = enumerate(numbers)
+    else
+        lst = enumerate(reverse(numbers))
+    end
+
+    for i in lst
+        if reduce_tile_drops
+            remaining = numbers[i[1]+1:num_len]
+        else
+            remaining = numbers[1:(num_len - i[1])]
+        end
 
         combo_gen(remaining, target, vcat(partial, i[2]), partial_sum + i[2])
     end
@@ -59,13 +74,23 @@ function possible_combos(numbers, target)
     return res
 end
 
+function reverse_combos(arr)
+    arr_len = [length(x) for x in arr]
+    println(arr)
+    println(arr_len[arr_len == 2])
+end
+
 function make_combos(arr)
     output = Int16[]
-    for dice in 1:12
+    for dice in 6:7
         output = vcat(output, [possible_combos(arr, dice)])
     end
     return output
 end
+
+x = make_combos(Int16[x for x in 1:max_tile])
+print(reverse_combos(x[1]))
+
 
 function game_play(arr, combos)
     game_going = true
@@ -96,37 +121,43 @@ function game_play(arr, combos)
     for i in idx:max_tile
         round_score[i] = final_score
     end
-    return round_score
+    return round_score, arr
 end
 
 
-println("Prep")
-new_arr = Int16[x for x in 1:max_tile]
-combinations = make_combos(new_arr)
+# println("Prep")
+# new_arr = Int16[x for x in 1:max_tile]
+# combinations = make_combos(new_arr)
+# println(combinations)
 
 function mult_games(n)
     println("Running games")
-    scores = zeros(Int16, n)
+    scores = zeros(Int16, (n, max_tile+1))
+    results = zeros(Int16, (n, max_tile))
     for i in 1:n
         arr = copy(new_arr)
-        val = game_play(copy(new_arr), combinations)[max_tile]
-        scores[i] = val
+        val, arr = game_play(copy(new_arr), combinations)
+        scores[i, :] = val
+        results[i, :] = arr
     end
-    return scores
+    return scores, results
 end
-scores = mult_games(1000000)
 
-println("Prepping Results")
-x_val = [x for x in 0:sum(1:max_tile)]
-y = copy(x_val)
+# scores, results = mult_games(1000)
 
-for i in x_val
-    y[i+1] = length([x for x in scores if x == i])
-end 
+# println("Prepping Results")
+# x_val = [x for x in 0:sum(1:max_tile)]
+# y = copy(x_val)
 
-y = y./sum(y)
+# for i in x_val
+#     y[i+1] = length([x for x in scores if x == i])
+# end 
 
-println(string(y[1] * 100) * "%")
-print(Dates.now() - starttime)
-plot(y)
+# y = y./sum(y)
 
+# println(string(y[1] * 100) * "%")
+# print(Dates.now() - starttime)
+
+# loc = "/Users/ushhamilton/Documents/03 Programming/Julia/Shut The Box/Outputs/"
+# writedlm(loc * "Score_Output.csv", scores, ',')
+# writedlm(loc * "Array_Output.csv", results, ',')
