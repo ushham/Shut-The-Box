@@ -52,7 +52,7 @@ Same as RT-E but if there are multiple permutations availible of the same length
 | Average score          | 12.27 | 12.41 | 24.14 | 24.23 |
 | Average No. open tiles | 2.50  | 2.45  | 3.55  | 3.54  |
 
-![9-Dice 1D](https://github.com/ushham/Shut-The-Box/tree/master/Images/9-Dice_1D.png)
+![9-Dice 1D](Images/9-Dice_1D.png)
 
 **2 Dice:**
 
@@ -62,7 +62,7 @@ Same as RT-E but if there are multiple permutations availible of the same length
 | Average score          | 11.38 | 12.20 | 24.16 | 24.21 |
 | Average No. open tiles | 2.34  | 2.47  | 3.56  | 3.54  |
 
-![9-Dice 2D](https://github.com/ushham/Shut-The-Box/tree/master/Images/9-Dice_2D.png)
+![9-Dice 2D](Images/9-Dice_2D.png)
 
 In the two dice version the MT-E stategy is the optimal out of those tested. As suspected, this approach leads to fewer open tiles in each game, even though the stategy aims to keep as many tiles open per round as possible.
 
