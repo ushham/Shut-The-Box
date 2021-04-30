@@ -30,10 +30,6 @@ In this strategy, for each dice roll, the code will try to only close the one ti
 
 Same as MT-E, but I reversed the preference for permutations when multiple tiles had to be closed. In the example I gave we would preference [5, 7] over [4, 8], which is preferenced over [3, 9].
 
-### Maximise tiles - Probability (MT-P)
-
-Same as MT-E, however the combination is chosen where each tile has the lowest probability of being rolled on its own. For example
-
 ### Reduce tiles - Extremes (RT-E)
 
 In this method we try to reduce the number of tiles open in each game. To do this I maximised the number of tiles closed with each dice roll. For example, if I roll 12 in the first roll of the game, I would close [1, 2, 3, 6]. Again, when there is an option between permutations of the same number of tile closures, we use the permutations where there is the largest difference between the lowest and highest tiles.
@@ -47,6 +43,54 @@ Same as RT-E but if there are multiple permutations availible of the same length
 ### Reduce tiles - Probability (MT-P)
 
 ## 9-Tile varient
+
+**1 Dice:**
+
+| Variant                | MT-E  | MT-M  | RT-E  | RT-M  |
+| ---------------------- | :---: | :---: | :---: | :---: |
+| Probability of winning | 5.45% | 6.69% | 1.11% | 1.05% |
+| Average score          | 12.27 | 12.41 | 24.14 | 24.23 |
+| Average No. open tiles | 2.50  | 2.45  | 3.55  | 3.54  |
+
+![9-Dice 1D](/Users/ushhamilton/Documents/03 Programming/Python/Shut_The_Box/Graphing/9-Dice 1D.png)
+
+**2 Dice:**
+
+| Variant                | MT-E  | MT-M  | RT-E  | RT-M  |
+| ---------------------- | :---: | :---: | :---: | :---: |
+| Probability of winning | 6.95% | 6.06% | 1.05% | 1.03% |
+| Average score          | 11.38 | 12.20 | 24.16 | 24.21 |
+| Average No. open tiles | 2.34  | 2.47  | 3.56  | 3.54  |
+
+![9-Dice 2D](/Users/ushhamilton/Documents/03 Programming/Python/Shut_The_Box/Graphing/9-Dice 2D.png)
+
+In the two dice version the MT-E stategy is the optimal out of those tested. As suspected, this approach leads to fewer open tiles in each game, even though the stategy aims to keep as many tiles open per round as possible.
+
+The second highest probability of score to end on is a score of 9. 
+
+
+
+## 10-Tile varient
+
+**1 Dice:**
+
+| Variant                | MT-E | MT-M | RT-E | RT-M |
+| ---------------------- | :--: | :--: | :--: | :--: |
+| Probability of winning |      |      |      |      |
+| Average score          |      |      |      |      |
+| Average No. open tiles |      |      |      |      |
+
+**2 Dice:**
+
+| Variant                | MT-E | MT-M | RT-E | RT-M |
+| ---------------------- | :--: | :--: | :--: | :--: |
+| Probability of winning |      |      |      |      |
+| Average score          |      |      |      |      |
+| Average No. open tiles |      |      |      |      |
+
+
+
+## 12-Tile varient
 
 **1 Dice:**
 

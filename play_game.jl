@@ -50,23 +50,22 @@ function combo_gen(numbers, target, partial = Int16[], partial_sum = 0)
 
     num_len = length(numbers)
     if reduce_tile_drops
-        lst = enumerate(numbers)
-    else
         lst = enumerate(reverse(numbers))
+    else
+        lst = enumerate(numbers)
     end
 
     for i in lst
         if reduce_tile_drops
-            remaining = numbers[i[1]+1:num_len]
-        else
             remaining = numbers[1:(num_len - i[1])]
+        else
+            remaining = numbers[i[1]+1:num_len]
         end
 
         combo_gen(remaining, target, vcat(partial, i[2]), partial_sum + i[2])
     end
 
 end
-
 
 function possible_combos(numbers, target)
     global res = Int16[]
@@ -75,27 +74,39 @@ function possible_combos(numbers, target)
 end
 
 function reverse_combos(arr)
+    out_arr = []
     arr_len = [length(x) for x in arr]
-    println(arr)
-    println(arr_len[arr_len == 2])
+    for i in unique(arr_len)
+        sub_arr = arr[(arr_len .>= i) .& (arr_len .<= i)]
+        if length(sub_arr) == 1
+            out_arr = vcat(out_arr, sub_arr)
+        else
+            for ele in reverse(sub_arr)
+                out_arr = vcat(out_arr, [ele])
+            end
+        end
+    end
+    return out_arr
 end
 
 function make_combos(arr)
     output = Int16[]
-    for dice in 6:7
-        output = vcat(output, [possible_combos(arr, dice)])
+    for dice in 1:12
+        if tiles_spaced
+            output = vcat(output, [possible_combos(arr, dice)])
+        else
+            output = vcat(output, [reverse_combos(possible_combos(arr, dice))])
+        end
     end
     return output
 end
 
-x = make_combos(Int16[x for x in 1:max_tile])
-print(reverse_combos(x[1]))
-
-
 function game_play(arr, combos)
     game_going = true
     round_score = zeros(Int16, max_tile + 1)
+    round_tiles = zeros(Int16, max_tile + 1)
     round_score[1] = sum(arr)
+    round_tiles[1] = count(arr .> 0)
 
     idx = 1
     while (sum(arr) > 0) & game_going
@@ -111,53 +122,77 @@ function game_play(arr, combos)
                 idx += 1
                 arr = drop_tiles(arr, drops)
                 round_score[idx] = sum(arr)
+                round_tiles[idx] = count(arr .> 0)
                 combo_looking = true
             end
         end
         game_going = combo_looking
     end
     final_score = round_score[idx]
+    final_tile = round_tiles[idx]
     idx += 1
     for i in idx:max_tile
         round_score[i] = final_score
+        round_tiles[i] = final_tile
     end
-    return round_score, arr
+    return round_score, round_tiles, arr
 end
-
-
-# println("Prep")
-# new_arr = Int16[x for x in 1:max_tile]
-# combinations = make_combos(new_arr)
-# println(combinations)
 
 function mult_games(n)
     println("Running games")
     scores = zeros(Int16, (n, max_tile+1))
+    tiles = zeros(Int16, (n, max_tile+1))
     results = zeros(Int16, (n, max_tile))
     for i in 1:n
         arr = copy(new_arr)
-        val, arr = game_play(copy(new_arr), combinations)
+        val, til, arr = game_play(copy(new_arr), combinations)
         scores[i, :] = val
+        tiles[i, :] = til
         results[i, :] = arr
     end
-    return scores, results
+    return scores, tiles, results
 end
 
-# scores, results = mult_games(1000)
+println("Prep")
+new_arr = Int16[x for x in 1:max_tile]
+combinations = make_combos(new_arr)
 
-# println("Prepping Results")
-# x_val = [x for x in 0:sum(1:max_tile)]
-# y = copy(x_val)
+scores, tiles, results = mult_games(10000)
 
-# for i in x_val
-#     y[i+1] = length([x for x in scores if x == i])
-# end 
+println("Prepping Results")
+x_val = [x for x in 0:sum(1:max_tile)]
+y = copy(x_val)
 
-# y = y./sum(y)
+for i in x_val
+    y[i+1] = length([scores[x, max_tile] for x in 1:size(scores, 1) if scores[x, max_tile] == i])
+end 
 
-# println(string(y[1] * 100) * "%")
-# print(Dates.now() - starttime)
+y = y./sum(y)
 
-# loc = "/Users/ushhamilton/Documents/03 Programming/Julia/Shut The Box/Outputs/"
-# writedlm(loc * "Score_Output.csv", scores, ',')
-# writedlm(loc * "Array_Output.csv", results, ',')
+println(string(y[1] * 100) * "%")
+println(Dates.now() - starttime)
+begin
+    file_id = ""
+    if one_dice
+        file_id = file_id * "1D-"
+    else
+        file_id = file_id * "2D-"
+    end
+    if reduce_tile_drops
+        file_id = file_id * "MT-"
+    else
+        file_id = file_id * "RT-"
+    end
+    if tiles_spaced
+        file_id = file_id * "E"
+    else
+        file_id = file_id * "M"
+    end
+end
+
+loc = "/Users/ushhamilton/Documents/03 Programming/Julia/Shut The Box/Outputs/"
+writedlm(loc * "Score_Output " * file_id * ".csv", scores, ',')
+writedlm(loc * "Array_Output " * file_id * ".csv", results, ',')
+writedlm(loc * "Tile_Output " * file_id * ".csv", tiles, ',')
+println(file_id)
+plot(x_val, y)
