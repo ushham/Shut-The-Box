@@ -52,7 +52,7 @@ Same as RT-E but if there are multiple permutations availible of the same length
 | Average score          | 12.27 | 12.41 | 24.14 | 24.23 |
 | Average No. open tiles | 2.50  | 2.45  | 3.55  | 3.54  |
 
-![9-Dice 1D](/Users/ushhamilton/Documents/03 Programming/Python/Shut_The_Box/Graphing/9-Dice 1D.png)
+![9-Dice 1D](https://github.com/ushham/Shut-The-Box/Images/9-Dice 1D.png)
 
 **2 Dice:**
 
@@ -62,31 +62,27 @@ Same as RT-E but if there are multiple permutations availible of the same length
 | Average score          | 11.38 | 12.20 | 24.16 | 24.21 |
 | Average No. open tiles | 2.34  | 2.47  | 3.56  | 3.54  |
 
-![9-Dice 2D](/Users/ushhamilton/Documents/03 Programming/Python/Shut_The_Box/Graphing/9-Dice 2D.png)
+![9-Dice 2D](https://github.com/ushham/Shut-The-Box/Images/9-Dice 2D.png)
 
 In the two dice version the MT-E stategy is the optimal out of those tested. As suspected, this approach leads to fewer open tiles in each game, even though the stategy aims to keep as many tiles open per round as possible.
-
-The second highest probability of score to end on is a score of 9. 
-
-
 
 ## 10-Tile varient
 
 **1 Dice:**
 
-| Variant                | MT-E | MT-M | RT-E | RT-M |
-| ---------------------- | :--: | :--: | :--: | :--: |
-| Probability of winning |      |      |      |      |
-| Average score          |      |      |      |      |
-| Average No. open tiles |      |      |      |      |
+| Variant                | MT-E  | MT-M  | RT-E  | RT-M  |
+| ---------------------- | :---: | :---: | :---: | :---: |
+| Probability of winning | 3.34% | 3.69% | 0.37% | 0.38% |
+| Average score          | 17.23 | 17.93 | 32.35 | 32.37 |
+| Average No. open tiles | 2.96  | 3.02  | 4.35  | 4.32  |
 
 **2 Dice:**
 
-| Variant                | MT-E | MT-M | RT-E | RT-M |
-| ---------------------- | :--: | :--: | :--: | :--: |
-| Probability of winning |      |      |      |      |
-| Average score          |      |      |      |      |
-| Average No. open tiles |      |      |      |      |
+| Variant                | MT-E  | MT-M  | RT-E  | RT-M  |
+| ---------------------- | :---: | :---: | :---: | :---: |
+| Probability of winning | 3.93% | 3.32% | 0.35% | 0.36% |
+| Average score          | 16.88 | 17.85 | 32.38 | 32.37 |
+| Average No. open tiles | 2.90  | 3.03  | 4.35  | 4.32  |
 
 
 
