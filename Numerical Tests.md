@@ -80,7 +80,7 @@ In this case the MT-M strategy results in a higher probability of winning compar
 
 The average for the MT-M strategy is 5.65, compared to 7.97 for the MT-E strategy. As only one dice can be used from this point on, on average the MT-E strategy will require two or more dice rolls to win the game, where as the MT-M strategy, on average, could be won with one dice roll. The fact that the average score is low enough for a game to be won with one dice roll, compared to at least two, explains why the probability of winning the once dice version of the game using this strategy is higher.
 
-![10-1D distripbution](Images/10-1D distripbution.png)
+![10-1D_distribution](Images/10-1D distripbution.png)
 
 **2 Dice:**
 
@@ -92,7 +92,7 @@ The average for the MT-M strategy is 5.65, compared to 7.97 for the MT-E strateg
 
 In the below image I show the probability of ending at a given score for the two most successful 1 and 2 dice varients.
 
-![10-Dice 2D](Images/10-Dice 2D.png)
+![10-Dice_2D](Images/10-Dice 2D.png)
 
 ## 12-Tile varient
 
@@ -114,7 +114,7 @@ In the below image I show the probability of ending at a given score for the two
 
 Below I show the probability of ending on a given score for the two most successful strategies of the 1 and 2 dice varients. In the 12 tile version of the game, the one dice varient of the game has a (very slightly) higher probabiliy of resulting in a winning game. 
 
-![12-Dice 2D](Images/12-Dice 2D.png)
+![12-Dice_2D](Images/12-Dice 2D.png)
 
 This graph shows some very pronounced spikes around the final scores  of 12, 23, 33, and 42. These spikes usually result from the highest tiles remaining open. 
 
