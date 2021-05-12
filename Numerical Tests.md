@@ -76,6 +76,12 @@ In the two dice version the MT-E stategy is the optimal out of those tested. As 
 | Average score          | 17.23 | 17.93 | 32.35 | 32.37 |
 | Average No. open tiles | 2.96  | 3.02  | 4.35  | 4.32  |
 
+In this case the MT-M strategy results in a higher probability of winning compared to the MT-E strategy. This is due to the MT-M strategy tending to have a higher proportion of low value tiles, once the 1-dice rule is triggered. This is becasue the stragegy purposely closes the intermediate value tiles as a priority. This can be seen in the below image, where the probably of each tile being open once the 1-dice rule is triggered is shown, along with the average score for each strategy when the largest open tile has value 6 or less. Note this image shows the probability of individual tiles being open, where multiple tiles can be open at the same time, so the sum of probabilities is greater than 1.
+
+The average for the MT-M strategy is 5.65, compared to 7.97 for the MT-E strategy. As only one dice can be used from this point on, on average the MT-E strategy will require two or more dice rolls to win the game, where as the MT-M strategy, on average, could be won with one dice roll. The fact that the average score is low enough for a game to be won with one dice roll, compared to at least two, explains why the probability of winning the once dice version of the game using this strategy is higher.
+
+![10-1D distripbution](Images/10-1D distripbution.png)
+
 **2 Dice:**
 
 | Variant                | MT-E  | MT-M  | RT-E  | RT-M  |
@@ -84,22 +90,32 @@ In the two dice version the MT-E stategy is the optimal out of those tested. As 
 | Average score          | 16.88 | 17.85 | 32.38 | 32.37 |
 | Average No. open tiles | 2.90  | 3.03  | 4.35  | 4.32  |
 
+In the below image I show the probability of ending at a given score for the two most successful 1 and 2 dice varients.
 
+![10-Dice 2D](Images/10-Dice 2D.png)
 
 ## 12-Tile varient
 
 **1 Dice:**
 
-| Variant                | MT-E | MT-M | RT-E | RT-M |
-| ---------------------- | :--: | :--: | :--: | :--: |
-| Probability of winning |      |      |      |      |
-| Average score          |      |      |      |      |
-| Average No. open tiles |      |      |      |      |
+| Variant                | MT-E  | MT-M  |  RT-E  |  RT-M  |
+| ---------------------- | :---: | :---: | :----: | :----: |
+| Probability of winning | 0.34% | 0.36% | 0.016% | 0.016% |
+| Average score          | 35.36 | 35.66 | 53.89  | 53.85  |
+| Average No. open tiles | 4.52  | 4.59  |  6.19  |  6.17  |
 
 **2 Dice:**
 
-| Variant                | MT-E | MT-M | RT-E | RT-M |
-| ---------------------- | :--: | :--: | :--: | :--: |
-| Probability of winning |      |      |      |      |
-| Average score          |      |      |      |      |
-| Average No. open tiles |      |      |      |      |
+| Variant                | MT-E  | MT-M  |  RT-E  |  RT-M  |
+| ---------------------- | :---: | :---: | :----: | :----: |
+| Probability of winning | 0.34% | 0.33% | 0.012% | 0.013% |
+| Average score          | 35.37 | 35.66 | 53.91  | 53.83  |
+| Average No. open tiles | 4.52  | 4.59  |  6.20  |  6.17  |
+
+Below I show the probability of ending on a given score for the two most successful strategies of the 1 and 2 dice varients. In the 12 tile version of the game, the one dice varient of the game has a (very slightly) higher probabiliy of resulting in a winning game. 
+
+![12-Dice 2D](Images/12-Dice 2D.png)
+
+This graph shows some very pronounced spikes around the final scores  of 12, 23, 33, and 42. These spikes usually result from the highest tiles remaining open. 
+
+![Open_tile_probs](Images/Open_tile_probs.png)
