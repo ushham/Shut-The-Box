@@ -190,7 +190,7 @@ begin
     end
 end
 
-loc = "/Users/ushhamilton/Documents/03 Programming/Julia/Shut The Box/Outputs/"
+loc = ""
 writedlm(loc * "Score_Output " * file_id * ".csv", scores, ',')
 writedlm(loc * "Array_Output " * file_id * ".csv", results, ',')
 writedlm(loc * "Tile_Output " * file_id * ".csv", tiles, ',')
