@@ -1,3 +1,5 @@
+
+
 # Numerical Tests - Shut the box runs
 
 See the [wiki](https://en.wikipedia.org/wiki/Shut_the_box) for details on the game.
@@ -40,8 +42,6 @@ I knew this strategy would result in a lower probability of winning. However I w
 
 Same as RT-E but if there are multiple permutations availible of the same length, the one which has the smallest gap between first and last tile numbers is picked.
 
-### Reduce tiles - Probability (MT-P)
-
 ## 9-Tile varient
 
 **1 Dice:**
@@ -52,7 +52,15 @@ Same as RT-E but if there are multiple permutations availible of the same length
 | Average score          | 12.27 | 12.41 | 24.14 | 24.23 |
 | Average No. open tiles | 2.50  | 2.45  | 3.55  | 3.54  |
 
+The below graph shows the probability of ending the game on a given score, for each of the strategies. The spikes represnt scores which are more likely to end on, for example, all strategies show a peak at the value 9, which mainly results from the tile with value 9 being left open. The RT tile strategies result in higher average scores due to the lowest value tiles being closed first, this then leaves the player with only higher numbers to close, which require specific dice rolls to close.
+
 ![9-Dice 1D](Images/9-Dice_1D.png)
+
+In this case the MT-M strategy results in a higher probability of winning compared to the MT-E strategy. This is due to the MT-M strategy tending to have a higher proportion of low value tiles, once the 1-dice rule is triggered. This is becasue the stragegy purposely closes the intermediate value tiles as a priority. This can be seen in the below image, where the probably of each tile being open once the 1-dice rule is triggered is shown, along with the average score for each strategy when the largest open tile has value 6 or less. Note this image shows the probability of individual tiles being open, where multiple tiles can be open at the same time, so the sum of probabilities is greater than 1.
+
+The average for the MT-M strategy is 5.72, compared to 8.44 for the MT-E strategy. As only one dice can be used from this point on, on average the MT-E strategy will require two or more dice rolls to win the game, where as the MT-M strategy, on average, could be won with one dice roll. The fact that the average score is low enough for a game to be won with one dice roll, compared to at least two, explains why the probability of winning the once dice version of the game using this strategy is higher.
+
+![9-1D_distribution](Images/9-1D_distribution.png)
 
 **2 Dice:**
 
@@ -76,9 +84,9 @@ In the two dice version the MT-E stategy is the optimal out of those tested. As 
 | Average score          | 17.23 | 17.93 | 32.35 | 32.37 |
 | Average No. open tiles | 2.96  | 3.02  | 4.35  | 4.32  |
 
-In this case the MT-M strategy results in a higher probability of winning compared to the MT-E strategy. This is due to the MT-M strategy tending to have a higher proportion of low value tiles, once the 1-dice rule is triggered. This is becasue the stragegy purposely closes the intermediate value tiles as a priority. This can be seen in the below image, where the probably of each tile being open once the 1-dice rule is triggered is shown, along with the average score for each strategy when the largest open tile has value 6 or less. Note this image shows the probability of individual tiles being open, where multiple tiles can be open at the same time, so the sum of probabilities is greater than 1.
+Again, the MT-M provides a better strategy in the 1-dice version of the game, as explained in the 9 tile variant.
 
-The average for the MT-M strategy is 5.65, compared to 7.97 for the MT-E strategy. As only one dice can be used from this point on, on average the MT-E strategy will require two or more dice rolls to win the game, where as the MT-M strategy, on average, could be won with one dice roll. The fact that the average score is low enough for a game to be won with one dice roll, compared to at least two, explains why the probability of winning the once dice version of the game using this strategy is higher.
+As shown in the graph below, the average for the MT-M strategy is 5.65, compared to 7.97 for the MT-E strategy. 
 
 ![10-1D_distribution](Images/10-1D_distribution.png)
 
@@ -116,6 +124,6 @@ Below I show the probability of ending on a given score for the two most success
 
 ![12-Dice_2D](Images/12-Dice_2D.png)
 
-This graph shows some very pronounced spikes around the final scores  of 12, 23, 33, and 42. These spikes usually result from the highest tiles remaining open. 
+This graph shows some very pronounced spikes around the final scores  of 12, 23, 33, and 42. These spikes usually result from the highest tiles remaining open. Note that the y-axis is not uniform in each of the bar charts. 
 
 ![Open_tile_probs](Images/Open_tile_probs.png)
